@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>Tabbing</title>
+	<style type="text/css">
+		.tabs {
+		    width: 600px;
+		}
+		ul.tabs-list {
+		    list-style: none;
+		    margin: 0;
+		    padding: 5px;
+		    overflow: auto;
+		}
+		ul.tabs-list li {
+		    float: left;
+		    font-weight: bold;
+		    margin-right: 2px;
+		    padding: 8px 10px;
+		    border-radius: 5px 5px 5px 5px;
+		    cursor: pointer;
+		    background: #7b7272;
+		}
+		ul.tabs-list li:hover,
+		ul.tabs-list li.active {
+		    background-color: #08e;
+		}
+		.tabs-list li a {
+		    text-decoration: none;
+		    color: #fff;
+		}
+		.tab-content {
+			display: none ;
+		    padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Tabbing Demo</h2>
+	<div class="tabs">
+	    <ul class="tabs-list">
+	        <li><a href="#tab1">Description</a></li>
+	        <li><a href="#tab2">Review</a></li>
+	        <li><a href="#tab3">Addintional Information</a></li>
+	    </ul>
+	    <div class="tabs-contents">
+	        <div id="tab1" class="tab-content">
+	            <h2>Description Content</h2>
+	            <p>I am p tag from description</p>
+	        </div>
+	        <div id="tab2" class="tab-content">
+	            <h2>Review Content</h2>
+	            <p>No reviews yet</p>
+	        </div>
+	        <div id="tab3" class="tab-content">
+	            <h2>Extra Information</h2>
+	            <p>No information</p>
+	        </div>
+	    </div>
+	</div>
+	<hr />
+	<div class="another-content">This is another demo with same css and jquery script</div>
+	<hr />
+	<div class="tabs">
+	    <ul class="tabs-list">
+	        <li><a href="#tab5">Description</a></li>
+	        <li><a href="#tab6">Review</a></li>
+	        <li><a href="#tab7">Addintional Information</a></li>
+	    </ul>
+	    <div class="tabs-contents">
+	        <div id="tab5" class="tab-content">
+	            <h2>Description Content</h2>
+	            <p>I am p tag from description</p>
+	        </div>
+	        <div id="tab6" class="tab-content">
+	            <h2>Review Content</h2>
+	            <p>No reviews yet</p>
+	        </div>
+	        <div id="tab7" class="tab-content">
+	            <h2>Extra Information</h2>
+	            <p>No information</p>
+	        </div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.tabs-list li:first-child').addClass('active');
+			$('.tab-content').hide();
+			$('.tab-content:first-child').show();
+
+			$('.tabs-list li').click(function(e){
+				e.preventDefault();
+				
+				$(this).parents('ul.tabs-list').find('li').removeClass('active');
+				$(this).addClass('active');
+				$(this).parents('div.tabs').children('.tabs-contents').find('.tab-content').hide();
+			  	
+			  	var activeTab = $(this).find('a').attr('href');
+			  	$(activeTab).show();
+			  	// $(activeTab).fadeIn();
+			});
+		});
+	</script>
+</body>
+</html>
